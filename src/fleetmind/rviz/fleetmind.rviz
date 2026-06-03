@@ -1,0 +1,61 @@
+Panels:
+  - Class: rviz_common/Displays
+    Name: Displays
+    Property Tree Widget:
+      Expanded: ~
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Class: rviz_default_plugins/Grid
+      Name: Grid
+      Enabled: true
+      Plane Cell Count: 24
+      Cell Size: 1
+      Color: 80; 96; 80
+      Line Style:
+        Value: Lines
+      Reference Frame: <Fixed Frame>
+    - Class: rviz_default_plugins/TF
+      Name: TF
+      Enabled: true
+      Marker Scale: 1.2
+      Show Names: true
+      Show Axes: true
+      Show Arrows: false
+    - Class: rviz_default_plugins/MarkerArray
+      Name: FleetMarkers
+      Enabled: true
+      Namespaces: {}
+      Topic:
+        Value: /fleet/markers
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+  Global Options:
+    Background Color: 18; 24; 18
+    Fixed Frame: map
+    Frame Rate: 30
+  Tools:
+    - Class: rviz_default_plugins/MoveCamera
+    - Class: rviz_default_plugins/Select
+    - Class: rviz_default_plugins/FocusCamera
+  Value: true
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Name: Current View
+      Distance: 32
+      Pitch: 0.62
+      Yaw: 0.78
+      Focal Point:
+        X: 0
+        Y: 0
+        Z: 1
+      Target Frame: <Fixed Frame>
+    Saved: ~
+Window Geometry:
+  Height: 820
+  Width: 1280
+  Displays:
+    collapsed: false

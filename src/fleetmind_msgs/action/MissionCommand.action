@@ -1,0 +1,14 @@
+# Goal: a high-level mission task for one robot
+string command                       # WAYPOINT | FOLLOW | RETURN | STOP | PATROL
+geometry_msgs/Point[] waypoints      # used by WAYPOINT / PATROL
+string follow_target                 # robot_id to follow (FOLLOW)
+bool loop                            # repeat waypoints (PATROL)
+---
+# Result
+bool success
+string message
+---
+# Feedback
+string status
+float32 distance_remaining
+geometry_msgs/Point current_position

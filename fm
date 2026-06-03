@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Convenience wrapper — this ROS2 install lacks the `ros2 run` plugin, so we
+# call the installed entry point directly. Usage mirrors the CLI:
+#   ./fm dog1 waypoint 5 3
+#   ./fm drone2 patrol 6 0 3 -6 0 3
+#   ./fm drone1 follow dog1
+#   ./fm all stop
+HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source /opt/ros/humble/setup.bash
+source "$HERE/install/setup.bash"
+exec "$HERE/install/fleetmind/lib/fleetmind/cli" "$@"

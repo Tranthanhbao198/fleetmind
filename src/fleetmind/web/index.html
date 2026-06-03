@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>FleetMind — AR Operator Console</title>
+<style>
+  :root { --g:#5be878; --bg:#0a0e0c; --pan:#11160f; --line:#1d2a1d; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--g);
+         font-family:"Consolas",monospace; height:100vh; display:flex; flex-direction:column; }
+  header { padding:8px 14px; border-bottom:1px solid var(--line);
+           display:flex; gap:16px; align-items:center; }
+  header h1 { font-size:16px; margin:0; letter-spacing:2px; }
+  #conn { font-size:12px; }
+  .ok { color:var(--g); } .bad { color:#e8625b; }
+  main { flex:1; display:grid; grid-template-columns:430px 1fr; gap:10px; padding:10px; min-height:0; }
+  .panel { background:var(--pan); border:1px solid var(--line); border-radius:6px; padding:10px; }
+  #map { background:#0c120c; border:1px solid var(--line); display:block; width:400px; height:400px; cursor:crosshair; }
+  .hint { font-size:11px; opacity:.6; margin-top:4px; }
+  #fpv { width:100%; border:1px solid var(--line); border-radius:4px; background:#000; aspect-ratio:16/9; object-fit:cover; }
+  table { width:100%; border-collapse:collapse; font-size:12px; margin-top:8px; }
+  td,th { text-align:left; padding:2px 6px; border-bottom:1px solid var(--line); }
+  th { opacity:.6; font-weight:normal; }
+  .controls { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; align-items:center; }
+  select, button { background:#0c120c; color:var(--g); border:1px solid var(--g);
+                   border-radius:4px; padding:6px 10px; font-family:inherit; font-size:12px; cursor:pointer; }
+  button:hover { background:var(--g); color:#000; }
+  button.stop { border-color:#e8625b; color:#e8625b; }
+  button.stop:hover { background:#e8625b; color:#000; }
+  label { font-size:12px; opacity:.7; }
+</style>
+</head>
+<body>
+<header>
+  <h1>◢ FLEETMIND</h1>
+  <span>AR OPERATOR CONSOLE</span>
+  <span id="conn" class="bad">● connecting…</span>
+</header>
+<main>
+  <div class="panel">
+    <canvas id="map" width="400" height="400"></canvas>
+    <div class="hint">click map → send WAYPOINT to selected robot</div>
+    <table id="fleet"><thead><tr><th>id</th><th>type</th><th>task</th><th>x</th><th>y</th><th>z</th><th>bat</th></tr></thead><tbody></tbody></table>
+    <div class="controls">
+      <label>robot</label>
+      <select id="sel"></select>
+      <label>follow→</label>
+      <select id="tgt"></select>
+    </div>
+    <div class="controls">
+      <button onclick="cmd('FOLLOW')">FOLLOW</button>
+      <button onclick="cmd('PATROL')">PATROL</button>
+      <button onclick="cmd('RETURN')">RETURN</button>
+      <button class="stop" onclick="cmd('STOP')">STOP</button>
+      <button class="stop" onclick="stopAll()">STOP ALL</button>
+    </div>
+  </div>
+  <div class="panel" style="display:flex; flex-direction:column; gap:8px;">
+    <div style="opacity:.7; font-size:12px;">FIRST-PERSON VIDEO → AR GLASSES</div>
+    <img id="fpv" src="">
+    <div class="hint">live MJPEG from the selected robot's (simulated) onboard cam</div>
+  </div>
+</main>
+<script src="roslib.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
